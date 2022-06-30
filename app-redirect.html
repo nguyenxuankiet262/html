@@ -7,8 +7,8 @@
 </head>
 
 <body>
-    <div style="width:200px;height: 200px;background: red;" onclick="open(true)">
-    </div>
+    <input id="yes" type="button" onclick="open(true)">YES</input>
+    <input id="NO" type="button">NO</input>
     <script>
         var MOBILE_BASE_URL = ""
 
@@ -38,7 +38,7 @@
 
         function open(has_appli) {
             setCookie("appli", true, 1000);
-            alert(has_appli)
+
             if (IS_IOS) {
                 if (has_appli) {
                     window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
@@ -52,7 +52,6 @@
                 }
             } else if (IS_ANDROID) {
                 window.location = 'intent:/' + $("meta[property='al:android:url']").attr("content").split(':/')[1] + '#Intent;package=' + $("meta[property='al:android:package']").attr("content") + ';scheme=' + $("meta[property='al:android:url']").attr("content").split(':/')[0] + ';launchFlags=268435456;end;';
-                alert('intent:/' + $("meta[property='al:android:url']").attr("content").split(':/')[1] + '#Intent;package=' + $("meta[property='al:android:package']").attr("content") + ';scheme=' + $("meta[property='al:android:url']").attr("content").split(':/')[0] + ';launchFlags=268435456;end;')
             }
         }
     </script>
