@@ -1,60 +1,19 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta property="al:android:url" content="biby://biby.page.link/line.tc.buysell?token='someToken'" />
-    <meta property="al:android:app_name" content="Biby" />
+    <meta property="fb:app_id" content="1119308498474075" />
     <meta property="al:android:package" content="com.biby" />
+    <meta property="al:android:app_name" content="Biby" />
+    <meta property="al:android:url" content="app://biby.page.link" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <input id="yes" type="button" onclick="open(true)">YES</input>
-    <input id="NO" type="button">NO</input>
-    <script>
-        var MOBILE_BASE_URL = ""
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1);
-                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-            }
-            return "";
-        }
-
-        function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
-        }
-
-        var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
-            IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
-            IS_IOS = IS_IPAD || IS_IPHONE,
-            IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
-            IS_MOBILE = IS_IOS || IS_ANDROID;
-
-        function open(has_appli) {
-            setCookie("appli", true, 1000);
-
-            if (IS_IOS) {
-                if (has_appli) {
-                    window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
-                    setTimeout(function () {
-                        if (!document.webkitHidden) {
-                            window.location = 'http://itunes.apple.com/app/id' + $("meta[property='al:ios:app_store_id']").attr("content");
-                        }
-                    }, 25);
-                } else {
-                    window.location = 'http://itunes.apple.com/app/id' + $("meta[property='al:ios:app_store_id']").attr("content");
-                }
-            } else if (IS_ANDROID) {
-                window.location = 'intent:/' + $("meta[property='al:android:url']").attr("content").split(':/')[1] + '#Intent;package=' + $("meta[property='al:android:package']").attr("content") + ';scheme=' + $("meta[property='al:android:url']").attr("content").split(':/')[0] + ';launchFlags=268435456;end;';
-            }
-        }
-    </script>
+    <h1>Hello World! 13</h1>
 </body>
 
 </html>
