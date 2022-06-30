@@ -7,8 +7,8 @@
 </head>
 
 <body>
-    <div style="width:200px;height: 200px;background: blue;" onclick="open(true)">
-    </div>
+    <input id="yes" type="button" onclick="open(true)">YES</input>
+    <input id="NO" type="button">NO</input>
     <script>
         var MOBILE_BASE_URL = ""
 
@@ -37,8 +37,22 @@
             IS_MOBILE = IS_IOS || IS_ANDROID;
 
         function open(has_appli) {
-            window.location = 'intent:/' + $("meta[property='al:android:url']").attr("content").split(':/')[1] + '#Intent;package=' + $("meta[property='al:android:package']").attr("content") + ';scheme=' + $("meta[property='al:android:url']").attr("content").split(':/')[0] + ';launchFlags=268435456;end;';
-            alert('intent:/' + $("meta[property='al:android:url']").attr("content").split(':/')[1] + '#Intent;package=' + $("meta[property='al:android:package']").attr("content") + ';scheme=' + $("meta[property='al:android:url']").attr("content").split(':/')[0] + ';launchFlags=268435456;end;')
+            setCookie("appli", true, 1000);
+
+            if (IS_IOS) {
+                if (has_appli) {
+                    window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
+                    setTimeout(function () {
+                        if (!document.webkitHidden) {
+                            window.location = 'http://itunes.apple.com/app/id' + $("meta[property='al:ios:app_store_id']").attr("content");
+                        }
+                    }, 25);
+                } else {
+                    window.location = 'http://itunes.apple.com/app/id' + $("meta[property='al:ios:app_store_id']").attr("content");
+                }
+            } else if (IS_ANDROID) {
+                window.location = 'intent:/' + $("meta[property='al:android:url']").attr("content").split(':/')[1] + '#Intent;package=' + $("meta[property='al:android:package']").attr("content") + ';scheme=' + $("meta[property='al:android:url']").attr("content").split(':/')[0] + ';launchFlags=268435456;end;';
+            }
         }
     </script>
 </body>
